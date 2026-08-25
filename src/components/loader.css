@@ -1,0 +1,119 @@
+.resize-loader {
+  width: 32px;
+  height: 32px;
+  display: block;
+  flex: 0 0 auto;
+  fill: currentColor;
+}
+
+.resize-loader__frame {
+  animation: resize-loader-calibrate 2.4s ease-in-out infinite;
+}
+
+.resize-loader__item,
+.resize-loader__echo {
+  transform-box: view-box;
+  transform-origin: 40px 216px;
+  will-change: transform, opacity;
+}
+
+.resize-loader__item {
+  animation: resize-loader-cycle 2.4s cubic-bezier(0.16, 1, 0.3, 1)
+    infinite;
+}
+
+.resize-loader__echo {
+  opacity: 0;
+  animation: resize-loader-sample 2.4s ease-in-out infinite;
+}
+
+@keyframes resize-loader-cycle {
+  0%,
+  8% {
+    transform: scale(1.6923);
+  }
+
+  42%,
+  58% {
+    transform: scale(1);
+  }
+
+  92%,
+  100% {
+    transform: scale(1.6923);
+  }
+}
+
+@keyframes resize-loader-sample {
+  0%,
+  12%,
+  42%,
+  58%,
+  92%,
+  100% {
+    opacity: 0;
+  }
+
+  0%,
+  12% {
+    transform: scale(1.6923);
+  }
+
+  24% {
+    opacity: 0.2;
+    transform: scale(1.46);
+  }
+
+  40% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+
+  60% {
+    transform: scale(1.04);
+  }
+
+  76% {
+    opacity: 0.2;
+    transform: scale(1.3);
+  }
+
+  90% {
+    opacity: 0;
+    transform: scale(1.62);
+  }
+}
+
+@keyframes resize-loader-calibrate {
+  0%,
+  8%,
+  92%,
+  100% {
+    opacity: 0.68;
+  }
+
+  42%,
+  58% {
+    opacity: 0.28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resize-loader__frame,
+  .resize-loader__item,
+  .resize-loader__echo {
+    animation: none;
+  }
+
+  .resize-loader__frame {
+    opacity: 0.42;
+  }
+
+  .resize-loader__item {
+    transform: scale(1);
+  }
+
+  .resize-loader__echo {
+    display: none;
+  }
+}
